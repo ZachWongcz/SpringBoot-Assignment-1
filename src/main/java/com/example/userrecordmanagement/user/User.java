@@ -1,9 +1,15 @@
 package com.example.userrecordmanagement.user;
 
+import java.util.List;
+
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -26,10 +32,22 @@ public class User {
     private String email;
     private String about;
     private String roles;
-    private String language;
-    private String skills;
-    private String projectsAndExperiences;
-    private String assignments;
+    @ElementCollection
+    @CollectionTable(name = "user_language", joinColumns = @JoinColumn(name = "userId"))
+    @Column(name = "language")
+    private List<String> language;
+    @ElementCollection
+    @CollectionTable(name = "user_skills", joinColumns = @JoinColumn(name = "userId"))
+    @Column(name = "skill")
+    private List<String> skills;
+    @ElementCollection
+    @CollectionTable(name = "user_p&E", joinColumns = @JoinColumn(name = "userId"))
+    @Column(name = "projectsAndExperiences")
+    private List<String> projectsAndExperiences;
+    @ElementCollection
+    @CollectionTable(name = "user_assignments", joinColumns = @JoinColumn(name = "userId"))
+    @Column(name = "assignments")
+    private List<String> assignments;
     private String pfp;
     
     public User() {
@@ -40,10 +58,10 @@ public class User {
                 String email, 
                 String about, 
                 String roles, 
-                String language,
-                String skills, 
-                String projectsAndExperiences, 
-                String assignments, 
+                List<String> language,
+                List<String> skills, 
+                List<String> projectsAndExperiences, 
+                List<String> assignments, 
                 String pfp) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -105,35 +123,35 @@ public class User {
         this.roles = roles;
     }
 
-    public String getLanguage() {
+    public List<String> getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(List<String> language) {
         this.language = language;
     }
 
-    public String getSkills() {
+    public List<String> getSkills() {
         return skills;
     }
 
-    public void setSkills(String skills) {
+    public void setSkills(List<String> skills) {
         this.skills = skills;
     }
 
-    public String getProjectsAndExperiences() {
+    public List<String> getProjectsAndExperiences() {
         return projectsAndExperiences;
     }
 
-    public void setProjectsAndExperiences(String projectsAndExperiences) {
+    public void setProjectsAndExperiences(List<String> projectsAndExperiences) {
         this.projectsAndExperiences = projectsAndExperiences;
     }
 
-    public String getAssignments() {
+    public List<String> getAssignments() {
         return assignments;
     }
 
-    public void setAssignments(String assignments) {
+    public void setAssignments(List<String> assignments) {
         this.assignments = assignments;
     }
 

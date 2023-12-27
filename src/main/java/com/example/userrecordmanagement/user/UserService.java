@@ -54,16 +54,16 @@ public class UserService {
                     user.setRoles((String) value);
                     break;
                 case "language":
-                    user.setLanguage((String) value);
+                    user.setLanguage((List<String>) value);
                     break;
                 case "skills":
-                    user.setSkills((String) value);
+                    user.setSkills((List<String>) value);
                     break;
                 case "projectsAndExperiences":
-                    user.setProjectsAndExperiences((String) value);
+                    user.setProjectsAndExperiences((List<String>) value);
                     break;
                 case "assignments":
-                    user.setAssignments((String) value);
+                    user.setAssignments((List<String>) value);
                     break;
                 case "pfp":
                     user.setPfp((String) value);
